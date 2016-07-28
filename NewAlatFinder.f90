@@ -35,7 +35,7 @@ module vars
          endif
       enddo A
     endsubroutine wordfinder
-
+!-----------------------------------------------------------------------------
     subroutine cellfinder
       implicit none
       integer :: ierr,j,m
@@ -51,7 +51,7 @@ module vars
       enddo A
       backspace(11)
     endsubroutine cellfinder
-
+!-----------------------------------------------------------------------------
     subroutine filesize(i)
       implicit none
       integer :: ierr 
@@ -66,7 +66,7 @@ module vars
       i=i-1
       close(11)
     endsubroutine filesize
-
+!-----------------------------------------------------------------------------
     subroutine alat_finder(alat)
       implicit none
       real, intent(out) :: alat
@@ -76,7 +76,7 @@ module vars
       read(c(1:10),*) alat
       !print*, alat
     endsubroutine alat_finder
-
+!-----------------------------------------------------------------------------
     subroutine mkmatrix(matrix)
       implicit none
       integer :: i,j
@@ -86,7 +86,7 @@ module vars
       enddo
       !call printmaxtrixscreen(matrix,3,3)
     endsubroutine mkmatrix
-
+!-----------------------------------------------------------------------------
     subroutine printmaxtrixscreen(array,mrow,mcol)
       implicit none
       real, intent(in) :: array(mrow,mcol)
@@ -96,7 +96,7 @@ module vars
          write(6,*) array(k,:)
       enddo
     endsubroutine printmaxtrixscreen
-   
+!-----------------------------------------------------------------------------
     real function norm3x3(A,norm)
       implicit none
       real, dimension(:,:), intent(in) :: A
@@ -108,7 +108,7 @@ module vars
       B(:) = A(1,:)
       norm3x3 = sqrt(B(1)**2 + B(2)**2 + B(3)**2)
     endfunction norm3x3
-
+!-----------------------------------------------------------------------------
     subroutine themath(alat,matrix)
       real, dimension(3,3), intent(in) :: matrix
       real, dimension(3,3) :: blah
@@ -120,7 +120,7 @@ module vars
       write(6,*) "This is the new alat:", b
     endsubroutine themath
   end module vars
-
+!-----------------------------------------------------------------------------
   program main
     use vars
     implicit none
