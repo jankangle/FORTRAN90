@@ -5,10 +5,6 @@ real, dimension(:,:), allocatable :: initial,output,inv,M,U,L
 real, dimension(:), allocatable :: c,x,d,guess,old
 real :: diff
 
-
-
-
-
 write(6,*) "Input size of matrix"
 read(5,*) i
 print*, "Size of matrix:",i
@@ -27,15 +23,11 @@ allocate(guess(i))
 allocate(L(i,j))
 allocate(old(i))
 
-
 open(11,file="array.dat")
 read(11,*) initial
 write(6,*) "Initial Matrix:"
 call printmatrixscreen(initial,i,i)
-
 call strictdcmp(initial,L,U,i)
-
-
 call inverse(L,output,i)
 open(13,file="matrix.dat")
 read(13,*) inv
@@ -43,17 +35,15 @@ open(17,file="c.dat")
 read(17,*) c
 write(6,*) "b vector:"
 call printmatrixscreen(c,i,1)
-
 x=matmul(inv,c)
-
 open(14,file="U.dat")
 read(14,*) U
 U=transpose(U)
 M=matmul(inv,U)
-
 open(15,file="guess.dat")
 read(15,*) guess
 diff=10
+
 do while (abs(diff) >= 0.0000001 .and. count < 1000)
    d=matmul(M,guess)
    old=guess
@@ -62,6 +52,7 @@ do while (abs(diff) >= 0.0000001 .and. count < 1000)
    count=count+1
    print*, "Iteration Number:",count,guess
 enddo
+
 print*, "Number of Iterations:", count
 write(6,*) "Final Answer"
 call printmatrixscreen(guess,i,1)
@@ -82,7 +73,6 @@ close(11)
 close(15)
 close(14)
 close(13)
-
 print*, "Done"
 !------------------------------------------------------------
 contains
@@ -229,7 +219,56 @@ contains
     deallocate(inv)
     close(12)
   endsubroutine inverse
+!------------------------------------------------------------
+  subroutine strictdcmp(input,L,U,size)
+    implicit none
+    real, dimension(:,:), intent(in) :: input
+    integer, intent(in) :: size
+    integer :: i,j,cmax
+    real, dimension(:,:), intent(inout) :: L,U
+    i=size
+    j=i
+    cmax=i
+    do i=1,cmax
+       do j=1,cmax
+          if (i <= j)then
+             L(i,j) = input(i,j)
+             U(i,j) = 0
+          else
+             L(i,j) = 0
+             U(i,j) = input(i,j)
+          endif
+       enddo
+    enddo
+    call printmatrixU(U,size,size)
+  endsubroutine strictdcmp
+!------------------------------------------------------------
+  subroutine printmatrixU(array,mrow,mcol)
+    implicit none
+    real, intent(in) :: array(mrow,mcol)
+    integer, intent(in) :: mrow,mcol
+    integer :: k
+    open(13,file="U.dat")
+    do k=1,mrow
+       write(13,110) array(:,k)
+    enddo
+    110 format(999F11.7,1X) !Match the size of the matrix
+    close(13)
+  end subroutine printmatrixU
 !---------------------------------------------------------------
+  subroutine printmatrixL(array,mrow,mcol)
+    implicit none
+    real, intent(in) :: array(mrow,mcol)
+    integer, intent(in) :: mrow,mcol
+    integer :: k
+    open(13,file="L.dat")
+    do k=1,mrow
+       write(13,110) array(:,k)
+    enddo
+    110 format(999F11.7,1X) !Match the size of the matrix
+    close(13)
+  end subroutine printmatrixL
+  !--------------------------------------------------------------
   subroutine connum(A,B,onorm,inorm,tnorm)
     implicit none
     real, dimension(:,:), intent(in) :: A,B
@@ -270,53 +309,4 @@ contains
     norm=sqrt(sum(A**2.0))
   endfunction twonorm
 !---------------------------------------------------------------
-  subroutine strictdcmp(input,L,U,size)
-    implicit none
-    real, dimension(:,:), intent(in) :: input
-    integer, intent(in) :: size
-    integer :: i,j,cmax
-    real, dimension(:,:), intent(inout) :: L,U
-    i=size
-    j=i
-    cmax=i
-    do i=1,cmax
-       do j=1,cmax
-          if (i <= j)then
-             L(i,j) = input(i,j)
-             U(i,j) = 0
-          else
-             L(i,j) = 0
-             U(i,j) = input(i,j)
-          endif
-       enddo
-    enddo
-    call printmatrixU(U,size,size)
-  endsubroutine strictdcmp
-!------------------------------------------------------------
-  subroutine printmatrixL(array,mrow,mcol)
-    implicit none
-    real, intent(in) :: array(mrow,mcol)
-    integer, intent(in) :: mrow,mcol
-    integer :: k
-    open(13,file="L.dat")
-    do k=1,mrow
-       write(13,110) array(:,k)
-    enddo
-    110 format(999F11.7,1X) !Match the size of the matrix
-    close(13)
-  end subroutine printmatrixL
-!------------------------------------------------------------
-  subroutine printmatrixU(array,mrow,mcol)
-    implicit none
-    real, intent(in) :: array(mrow,mcol)
-    integer, intent(in) :: mrow,mcol
-    integer :: k
-    open(13,file="U.dat")
-    do k=1,mrow
-       write(13,110) array(:,k)
-    enddo
-    110 format(999F11.7,1X) !Match the size of the matrix
-    close(13)
-  end subroutine printmatrixU
-!------------------------------------------------------------
 endprogram zzz
