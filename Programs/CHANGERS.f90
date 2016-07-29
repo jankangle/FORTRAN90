@@ -40,8 +40,6 @@
       character(len=15), intent(inout) :: name
       if (name == "HYDROGEN") then
          name = "H"
-      elseif (name == "BORON") then
-         name = "B"
       elseif (name == "CARBON") then
          name = "C"
       elseif (name == "OXYGEN") then
