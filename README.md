@@ -8,9 +8,12 @@ Please visit the wiki for any questions regarding any of the programs
 ## Folders
 ### Numerical Recipes 
  - This is where you will find NR code used in my code.
+
 ### OLD
  - This is where you will find obsolete programs
+
 ### Programs
  - This is where you will find my programs
+
 ### Subroutines
  - This is where you will find Subroutines
