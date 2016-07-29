@@ -1,4 +1,4 @@
-subroutine printmaxtrixscreen(array,mrow,mcol)
+subroutine printmatrixscreen(array,mrow,mcol)
       implicit none
       real, intent(in) :: array(mrow,mcol)
       integer, intent(in) :: mrow,mcol
@@ -6,4 +6,4 @@ subroutine printmaxtrixscreen(array,mrow,mcol)
       do k=1,mrow
          write(11,*) array(k,:)
       enddo
-endsubroutine printmaxtrixscreen
+endsubroutine printmatrixscreen
