@@ -57,7 +57,6 @@ contains
     enddo
   endsubroutine ludcmp
   
-  
   subroutine read_input
     implicit none
     integer :: i,ndim, iargc
@@ -149,7 +148,6 @@ contains
     allocate(matrix(m,m))
 
     call createident(m,ident)
-    
     open(11,file=trim(adjustl(finp)))
     read(11,*) matrix
     call strictdcmp(matrix,L,U,m)
@@ -189,11 +187,8 @@ contains
     call input_file_c(file_name)
     open(12,file=trim(adjustl(file_name)))
     read(12,*) c
-
-
     x=matmul(c,newmat)
     res=matmul(U,newmat)
-    
     call input_file_guess(file_name)
     open(13,file=trim(adjustl(file_name)))
     read(13,*) guess
@@ -210,7 +205,6 @@ contains
     write(6,*) "Number of Iterations:", count
     write(6,*) "Final Answer"
     call printmatrixscreen(guess,m,1)
-
   endsubroutine matmath
 
   subroutine input_file_c(file_name)
@@ -219,7 +213,6 @@ contains
 
     write(6,*) "Input file for vector c"
     read(5,*) file_name
-
   endsubroutine input_file_c
 
   subroutine input_file_guess(file_name)
@@ -228,9 +221,7 @@ contains
 
     write(6,*) "Input file for guess"
     read(5,*) file_name
-
   endsubroutine input_file_guess
-
 
 endmodule vars
 
