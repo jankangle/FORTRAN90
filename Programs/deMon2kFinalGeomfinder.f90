@@ -16,6 +16,7 @@ contains
     deallocate(argv)
   endsubroutine read_input
   
+
   subroutine filesize(i)
     implicit none
     integer :: ierr 
@@ -53,6 +54,7 @@ contains
     implicit none
     integer :: i,j,k,atoms
     character(len=10) :: a,b,c,d,e,f,g
+    character(len=20) :: efile
     real,dimension(3,3) :: geom
     character,allocatable,dimension(:) :: atm
     write(6,*) "Number of atoms:"
@@ -60,18 +62,20 @@ contains
     allocate(atm(atoms))
     read(11,*)
     read(11,*)
-
-    write(6,*)
-    write(6,*)
-    write(6,*) "Final geometry in angstrom"
 100 format(A1,3X,F10.7,3X,F10.7,3X,F10.7)
+101 format(2X,I3)
+    call output(efile)
+    open(13,file=trim(adjustl(efile)))
+    write(13,101) atoms
+    write(13,*)
+
     do i=1,atoms
        read(11,*) a,b,c,d,e,f,g
        read(b,*) atm(i)
        read(c,*) geom(i,1)
        read(d,*) geom(i,2)
        read(e,*) geom(i,3)
-       write(6,100) atm(i),geom(i,:)
+       write(13,100) atm(i),geom(i,:)
     enddo
     
   endsubroutine mkmatrix
@@ -97,6 +101,15 @@ contains
     enddo A
     close(11)
   endsubroutine optchk
+
+  subroutine output(efile)
+    implicit none
+    character(len=20), intent(out) :: efile
+
+    write(6,*) "Input the output file name"
+    read(5,*) efile
+  endsubroutine output
+
 endmodule vars
 
 program finalgeom
