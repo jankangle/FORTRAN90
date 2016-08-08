@@ -17,30 +17,45 @@ contains
     deallocate(argv)
   endsubroutine read_input
 
+  subroutine whitespace(space)
+    implicit none
+    integer, intent(in) :: space
+    integer :: i,j
+    do i=1,j
+       write(6,*)
+    enddo
+  endsubroutine whitespace
 
   subroutine title
     implicit none
-    character(len=100) :: ti
+    character(len=50) :: ti
     write(6,*) "Input Title:"
     read(5,*) ti
     ti = trim(adjustl(ti))
     open(11,file=trim(adjustl(finp)))
     write(11,102) "TITLE",ti
-102 format(A5,1X,A100)
+102 format(A5,1X,50A)
   endsubroutine title
 
   subroutine VXCTYP
     implicit none
-    
-    character(len=5) :: vxc,func
-    do while (vxc /= "AUXIS" .and. vxc /= "BASIS")
-       write(6,*) "AUXIS OR BASIS?"
-       read(5,*) vxc
+    integer :: ans1
+    character(len=5) :: word,func
+    do while (ans1 /= 1 .and. ans1 /=  2)
+       write(6,*) "Choose vxctyp"
+       write(6,*) "1) AUXIS (default)"
+       write(6,*) "2) BASIS"
+       read(5,*) ans1
     enddo
-   
     call functional(func)
-    write(11,103)"VXCTYP",trim(adjustl(vxc)),trim(adjustl(func))
-103 format(A6,1X,A5,1X,5A)
+    if (ans1 == 1) then
+       word = "AUXIS"
+    else
+       word = "BASIS"
+    endif
+
+ 101 format(A6,1X,A5,1X,5A)
+    write(11,101) "VXCTYP",trim(adjustl(word)),trim(adjustl(func))
   endsubroutine VXCTYP
 
   subroutine functional(func)
@@ -52,20 +67,49 @@ contains
   
   subroutine basis
     implicit none
-    character(len=100) :: bas
-    write(6,*) "Input Basis set name"
-    read(5,*) bas
+    character(len=20) :: bas
+    integer :: ans1=0
+    do while (ans1 /= 1 .and. ans1 /= 2 .and. ans1 /= 3 .and. ans1 /= 4)
+       write(6,*) "Input Basis set name"
+       write(6,*) "1) DZVP"
+       write(6,*) "2) TZVP"
+       write(6,*) "3) TZVP-GGA"
+       write(6,*) "4) Enter your own"
+       read(5,*) ans1
+    enddo
+
+    if (ans1 == 1) then
+       bas = "DZVP"
+    elseif (ans1 == 2) then
+       bas = "TZVP"
+    elseif (ans1 == 3) then
+       bas = "TZVP-GGA"
+    elseif (ans1 == 4) then
+       write(6,*) "Enter Basis set name"
+       read(5,*) bas
+       bas = trim(adjustl(bas))
+    endif
     write(11,104) "BASIS (",trim(adjustl(bas)),")"
-104 format(A7,30A,A1)
+104 format(A7,19A,A1)
   endsubroutine basis
 
   subroutine ecps
     implicit none
     character(len=100) :: ecp
-    write(6,*) "Input ECPS name"
-    read(5,*) ecp
-    write(11,105) "ECPS (",trim(adjustl(ecp)),")"
-105 format(A6,30A,A1)
+    integer :: ans1=0
+    do while (ans1 /= 1 .and. ans1 /= 2)
+       write(6,*) "Input ECP?"
+       write(6,*) "1) Yes"
+       write(6,*) "2) No (Default)"
+       read(5,*) ans1
+    enddo
+
+    if (ans1 == 1) then
+       write(6,*) "Input ECPS name"
+       read(5,*) ecp
+       write(11,105) "ECPS (",trim(adjustl(ecp)),")"
+105    format(A6,30A,A1)
+    endif
   endsubroutine ecps
 
   subroutine auxis
@@ -80,22 +124,40 @@ contains
   subroutine scftyp
     implicit none
     character(len=10) :: scf,tight,tol
-    integer :: maxiter
-    !real :: tol
-    
-    do while (scf /= "RKS" .and. scf /= "UKS" .and. scf /= "ROKS")
-       write(6,*) "RKS,UKS or ROKS?"
-       read(5,*) scf
+    integer :: maxiter,ans1=0,ans2=0
+
+    do while (ans1 /= 1 .and. ans1 /= 2 .and. ans1 /= 3)
+       write(6,*) "Shell type?"
+       write(6,*) "1) RKS (default for closed-shell systems)"
+       write(6,*) "2) ROKS (default for open-shell systems)"
+       write(6,*) "3) UKS"
+       read(5,*) ans1
     enddo
     
-    write(6,*) "Input Max interations for SCF"
+    if (ans1 == 1) then
+       scf = "RKS"
+    elseif (ans1 == 2) then
+       scf = "ROKS"
+    elseif (ans1 == 3) then
+       scf = "UKS"
+    endif
+
+    write(6,*) "Input Max interations (default is 100)"
     read(5,*) maxiter
 
-    do while (tight /= "TIGHTEN" .and. tight /= "NOTIGHTEN")
-       write(6,*) "TIGHTEN or NOTIGHTEN"
-       read(5,*) tight
+    do while (ans2 /= 1 .and. ans2 /= 2)
+       write(6,*) "Tighten settings"
+       write(6,*) "1) TIGHTEN"
+       write(6,*) "2) NOTIGHTEN (default)"
+       read(5,*) ans2
     enddo
-    
+       
+    if (ans2 == 1) then
+       tight = "TIGHTEN"
+    elseif (ans2 == 2) then
+       tight = "NOTIGHTEN"
+    endif
+
     write(6,*) "Input Tolerance"
     write(6,*) "1.0E-5 is default"
     read(5,*) tol
@@ -112,50 +174,75 @@ contains
 
   subroutine shift
     implicit none
-    character(len=1) :: ans
-    real :: amnt
-    do while (ans /= "Y" .and. ans /= "N")
-       write(6,*) "Input Shift? (Y/N)"
-       read(5,*) ans
+    integer :: ans1=0
+    character(len=4) :: amnt
+
+    do while (ans1 /= 1 .and. ans1 /= 2)
+       write(6,*) "Input Shift?"
+       write(6,*) "1) Yes"
+       write(6,*) "2) No (default)"
+       read(5,*) ans1
     enddo
-    if (ans == "Y") then
+
+    if (ans1 == 1) then
        write(6,*) "Input Shift amount"
        read(5,*) amnt
-       write(11,101) "SHIFT",amnt
+       write(11,98) "SHIFT",amnt
     endif
-101 format(A5,1X,F4.1)
+98 format(A5,1X,4A)
   end subroutine shift
 
   subroutine grid
     implicit none
-    character(len=1) :: ans
+    integer :: ans1=0,ans2=0
     character(len=6) :: fix
-    do while (ans /= "Y" .and. ans /= "N")
-       write(6,*) "Fix grid? (Y/N)"
-       read(5,*) ans
+
+    do while (ans1 /= 1 .and. ans1 /= 2)
+       write(6,*) "Fix grid?"
+       write(6,*) "1) Yes"
+       write(6,*) "2) No (default)"
+       read(5,*) ans1
     enddo
 
 120 format(A10,1X,A6)
-    if (ans == "Y") then
-       do while (fix /= "MEDIUM" .and. fix /= "COARSE" .and. fix /= "FINE")
-          write(6,*) "MEDIUM, COARSE, or FINE?"
-          read(5,*) fix
-          fix=trim(adjustl(fix))
+    if (ans1 == 1) then
+       do while (ans2 /= 1 .and. ans2 /= 2 .and. ans2 /= 3)
+          write(6,*) "Fix grid"
+          write(6,*) "1) MEDIUM"
+          write(6,*) "2) COARSE"
+          write(6,*) "3) FINE"
+          read(5,*) ans2
        enddo
-       write(11,120) "GRID FIXED",fix
+       if (ans2 == 1) then
+          fix = "MEDIUM"
+          write(11,120) "GRID FIXED",fix
+       elseif (ans2 == 2) then
+          fix = "COARSE"
+          write(11,120) "GRID FIXED",fix
+       elseif (ans2 == 3) then
+          fix = "FINE"
+          write(11,120) "GRID FIXED",fix
+       endif
     endif
   end subroutine grid
 
   subroutine guess
     implicit none
     character(len=4) :: gue
+    integer :: ans1=0
     
-    do while (gue /= "TB" .and. gue /= "CORE")
-       write(6,*) "guess TB or CORE"
-       read(5,*) gue
-       gue = trim(adjustl(gue))
+    do while (ans1 /= 1 .and. ans1 /= 2)
+       write(6,*) "Guess what?"
+       write(6,*) "1) TB (default)"
+       write(6,*) "2) CORE"
+       read(5,*) ans1
     enddo
-    if (gue == "CORE") then
+
+    if (ans1 == 1) then
+       gue = "TB"
+       write(11,108) "GUESS", gue
+    elseif (ans1 == 2 ) then
+       gue = "CORE"
        write(11,108) "GUESS", gue
     endif
 108 format(A5,1X,A4)
@@ -163,70 +250,93 @@ contains
 
   subroutine diis
     implicit none
+    integer :: ans1=0
     character(len=3) :: ans
     
-    do while(ans /= "ON" .and. ans /= "OFF")
-       write(6,*) "DIIS ON or OFF?"
-       read(5,*) ans
-       ans=trim(adjustl(ans))
+    do while(ans1 /= 1 .and. ans1 /= 2)
+       write(6,*) "DIIS?"
+       write(6,*) "1) ON (default)"
+       write(6,*) "2) OFF"
+       read(5,*) ans1
     enddo
-    if (ans == "OFF") then
-       write(11,109) "DIIS",ans
+
+    if (ans1 == 2) then
+       write(11,109) "DIIS OFF"
     endif
-109 format(A4,1X,A3)
+109 format(A8)
   endsubroutine diis
 
-  subroutine calc(xyz)
+  subroutine calc
     implicit none
-    character(len=3) :: ans
-    character(len=10), intent(out) :: xyz
-    integer :: maxiter
+    character(len=12) :: word,xyz
+    integer :: maxiter,ans1=0,ans2=0
 130 format(A12,1X,A9,1X,A4,I3)
-    do while (ans /= "OPT" .and. ans /= "SIN")
-       write(6,*) "(OPT)IMIZATION or (SIN)GLE POINT ENERGY?"
-       read(5,*) ans
-       ans=trim(adjustl(ans))
+    
+    do while (ans1 /= 1 .and. ans1 /= 2)
+       write(6,*) "Type of calculation?"
+       write(6,*) "1) Single point energy (default)"
+       write(6,*) "2) Optimization"
+        read(5,*) ans1
     enddo
-    if (ans == "OPT") then
-       do while(xyz /= "CARTESIAN" .and. xyz /= "INTERNAL")
-          write(6,*) "CARTESIAN or INTERNAL"
-          read(5,*) xyz
-          xyz=trim(adjustl(xyz))
+
+    if (ans1 == 2) then
+       do while (ans2 /= 1 .and. ans2 /= 2)
+          write(6,*) "Geometry type"
+          write(6,*) "1) Cartesian"
+          write(6,*) "2) Internal (z-matrix)"
+          read(5,*) ans2
        enddo
-       write(6,*) "MAX ITERATIONS?"
+       write(6,*) "Max number of iterations? (default is 50)"
        read(5,*) maxiter
-       write(11,130) "OPTIMIZATION",xyz,"MAX=",maxiter
     endif
+
+    if (ans1 == 1) then
+    elseif (ans2 == 2) then
+       word = "OPTIMIZATION"
+       if (ans2 == 1) then
+          xyz = "CARTESIAN"
+       elseif (ans2 == 2) then
+          xyz = "INTERNAL"
+       endif
+       write(11,*) trim(adjustl(word)),trim(adjustl(xyz)),"MAX=",maxiter
+    endif
+111 format(12A,1X,12A,1X,4A,I3)
   endsubroutine calc
 
-  subroutine geom(xyz)
+  subroutine geom
     implicit none
-    character(len=10),intent(in) :: xyz
-    character(len=9) :: ang,temp,dumx
-
+    character(len=10) :: word,word1
+    integer :: ans1=0,ans2=0
 140 format(A8,1X,A9,1X,A8)
-    temp=xyz
-    dumx=xyz
-    if (temp == "INTERNAL") then
-       temp = "ZMATRIX"
-    endif
-    do while (ang /= "ANGSTROM" .and. ang /= "BOHR")
-       write(6,*) "ANGSTROM or BOHR"
-       read(5,*) ang
-       ang=trim(adjustl(ang))
+
+
+    do while(ans1 /= 1 .and. ans1 /= 2)
+       write(6,*) "ANGSTROM or BOHR?"
+       write(6,*) "1) ANGSTROM"
+       write(6,*) "2) BOHR"
+       read(5,*) ans1
     enddo
 
-    if (dumx == "CARTESIAN" .or. dumx == "INTERNAL") then
-       write(11,140) "GEOMETRY",temp,ang
-    else
-       do while(dumx /= "CARTESIAN" .and. dumx /= "INTERNAL" .and. dumx /= "ZMATRIX")
-          if(temp /= "CARTESIAN" .and. temp /= "INTERNAL") then
-             write(6,*) "CARTESIAN or ZMATRIX"
-             read(5,*) dumx
-          endif
-       enddo
-       write(11,140) "GEOMETRY",dumx,ang
-    endif
+    do while (ans2 /= 1 .and. ans2 /= 2)
+       write(6,*) "Type of geometry input"
+       write(6,*) "1) CARTESIAN"
+       write(6,*) "2) ZMATRIX"
+       read(5,*) ans2
+    enddo
+
+   if (ans1 == 1) then
+      word = "ANGSTROM"
+   elseif (ans1 == 2) then
+      word = "BOHR"   
+   endif
+
+   if (ans2 == 1) then
+      word1 = "CARTESIAN"
+   elseif (ans2 == 2) then
+      word1 = "ZMATRIX"
+   endif
+112 format(A8,1X,10A,1X,10A)
+   write(11,112) "GEOMETRY", word1,word
     call geom_input
     close(11)
   end subroutine geom
@@ -254,13 +364,74 @@ contains
     close(12)
   end subroutine geom_input
 
-end module vars
+  subroutine multiplicity
+    implicit none
+    integer :: mult,ans1=0
+    do while (ans1 /= 1 .and. ans1 /= 2)
+       write(6,*) "Specify multiplicity? (default: 1 for closed shell, 2 for open shell)"
+       write(6,*) "1) Yes"
+       write(6,*) "2) No"
+       read(5,*) ans1
+    enddo
+    if (ans1 == 1) then
+       write(6,*) "Enter Multiplicity of the system"
+       read(5,*) mult
+97     format(A12,1X,I1)
+       write(11,97) "MULTIPLICITY",mult
+    endif
+  endsubroutine multiplicity
 
+  subroutine charge
+    implicit none
+    integer :: ans1=0
+    character(len=2) chrg
+    do while (ans1 /= 1 .and. ans1 /= 2)
+       write(6,*) "Specify Charge? (default is 0)"
+       write(6,*) "1) Yes"
+       write(6,*) "2) No"
+       read(5,*) ans1
+    enddo
+    if (ans1 == 1) then
+       write(6,*) "Input charge of the system (default is 0)"
+       read(5,*) chrg
+96     format(A6,1X,2A)
+       write(11,96) "CHARGE",trim(adjustl(chrg))
+    endif
+  endsubroutine charge
+
+  subroutine frequency
+    implicit none
+    integer :: ans1=0,ans2=0
+    do while (ans1 /= 1 .and. ans1 /= 2)
+       write(6,*) "Frequency calculation?"
+       write(6,*) "1) Yes"
+       write(6,*) "2) No"
+       read(5,*) ans1
+    enddo
+    if (ans1 == 1) then
+       do while (ans2 /= 1 .and. ans2 /= 2)
+          write(6,*) "THERMO calculation?"
+          write(6,*) "1) Yes"
+          write(6,*) "2) No"
+          read(5,*) ans2
+       enddo
+       write(11,'(A9)') "FREQUENCY"
+       if (ans2 == 1) then
+          call thermo
+       endif
+    endif
+  endsubroutine frequency
+
+  subroutine thermo
+    implicit none
+    write(11,'(6A)') "THERMO"
+  endsubroutine thermo
+
+end module vars
 
 program deminp
   use vars
   implicit none
-  character(len=10) :: xyz
 
   call read_input
   call title
@@ -269,11 +440,14 @@ program deminp
   call ecps
   call auxis
   call scftyp
+  call multiplicity
+  call charge
   call shift
   call grid
   call guess
   call diis
-  call calc(xyz)
-  call geom(xyz)
+  call calc
+  call frequency
+  call geom
 
 endprogram deminp
