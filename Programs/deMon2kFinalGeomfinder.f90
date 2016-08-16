@@ -1,3 +1,13 @@
+! Title: deMon2k Final Geometry Finder
+! Date Created: Aug 2nd,2016
+! Date Last Modified: Aug 3rd,2016
+! Version: 1.0
+!
+! Author: Jonathan Kung
+! University of Calgary
+! Purpose: This program searches the demon2k output file. It will check if the geometry has converged, and if it has, take the coordinates and writes it in an output file readable by molecule visualization tools.
+
+
 module vars
   implicit none
   character(len=80) :: finp !file name input
