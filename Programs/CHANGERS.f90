@@ -1,3 +1,11 @@
+! Title: Basis set changer
+! Date Created: June 16,2016
+! Date Last Modified: Aug 16th,2016
+! Version: 1.0
+!
+! Author: Jonathan Kung
+! University of Calgary
+! Purpose: Easily change basis sets between different programs
   module vars
     implicit none
     type gbs
@@ -24,16 +32,6 @@
       finp=trim(adjustl(argv(1))) !trim the file name
       deallocate(argv)
     endsubroutine read_input
-!-----------------------------------------------------------------------------
-    subroutine printmaxtrixscreen(array,mrow,mcol)
-      implicit none
-      real, intent(in) :: array(mrow,mcol)
-      integer, intent(in) :: mrow,mcol
-      integer :: k
-      do k=1,mrow
-         write(11,*) array(k,:)
-      enddo
-    endsubroutine printmaxtrixscreen
 !-----------------------------------------------------------------------------
     subroutine atmnmtrunc(name)
       implicit none
@@ -101,17 +99,6 @@
       write(6,*) "Indicate Basis size:"
       read(5,*) size !Indicate the number of atoms
     endsubroutine basissize
- !-----------------------------------------------------------------------------   
-    subroutine chkbasissize(size,chksize)
-      implicit none
-      integer, intent(in) :: size
-      logical, intent(out) :: chksize
-      if (size > 1) then
-         chksize = .TRUE.
-      else
-         chksize = .FALSE.
-      endif
-    endsubroutine chkbasissize
 !-----------------------------------------------------------------------------
     subroutine lblksize(lblk,atom)
       implicit none
@@ -120,26 +107,6 @@
       write(6,*) "How many Ls for atom ", trim(adjustl(atom))," ?"
       read(5,*) lblk !reads the number of Ls
     endsubroutine lblksize
-!-----------------------------------------------------------------------------
-    subroutine lblkcnt_nwc(i)
-      implicit none
-      integer, intent(out) :: i
-      integer :: j,k
-      character(len=1) :: y
-      character(len=2) :: l_ang
-      i=0
-      j=0
-      do while (y /= "#")
-         read(22,*) y,l_ang
-         if (l_ang == "SP") then
-            i=i+1
-         endif
-         j=j+1
-      enddo
-      do k=1,j
-         backspace(22)
-      enddo
-    endsubroutine lblkcnt_nwc
 !-----------------------------------------------------------------------------
     subroutine nblkcnt_nwc(count)
       implicit none
@@ -160,69 +127,6 @@
       enddo
     endsubroutine nblkcnt_nwc
 !-----------------------------------------------------------------------------
-    subroutine Lprint_1(ang,lblk,m,ndim,count,datcount)
-      implicit none
-      integer, intent(in) :: lblk
-      integer, intent(inout) :: m,ndim,count,datcount
-      integer :: i,x,j
-      real, allocatable, dimension (:,:) :: matrix
-      character(len=1), intent(inout) :: ang
-      allocate(matrix(1,2))
-      if (count == 1) then
-      else
-         if (ang /= "L") then
-            datcount=datcount+1
-         endif
-         if (ang == "L") then
-            datcount=datcount+1
-         endif
-         !print*, datcount
-         if (datcount .gt. lblk) then
-            count=count+1
-            rewind(12)
-            do i=1,lblk
-               read(12,*) x,m,ndim
-               write(11,*) x,m,ndim
-               do j=1,ndim
-                  read(12,*) matrix(j,:)
-                  write(11,*) matrix(j,1), matrix(j,2)
-               enddo
-            enddo
-         endif
-      endif
-      deallocate(matrix)
-    end subroutine Lprint_1
- !-----------------------------------------------------------------------------  
-    subroutine specLprint(ang,lblk,m,ndim,count,datcount)
-      implicit none
-      integer, intent(in) :: lblk
-      integer, intent(inout) :: m,ndim,count,datcount
-      integer :: i,x,j
-      real, allocatable, dimension (:,:) :: matrix
-      character(len=1), intent(inout) :: ang
-      allocate(matrix(1,2))
-
-      if (count == 1) then
-      else
-         if (ang == "L") then
-            datcount=datcount+1
-         endif
-         if (datcount == lblk) then
-            count=count+1
-            rewind(12)
-            do i=1,lblk
-               read(12,*) x,m,ndim
-               write(11,*) x,m,ndim
-               do j=1,ndim
-                  read(12,*) matrix(j,:)
-                  write(11,*) matrix(j,1), matrix(j,2)
-               enddo
-            enddo
-         endif
-      endif
-      deallocate(matrix)    
-    endsubroutine specLprint
-!-----------------------------------------------------------------------------
     subroutine angchk(ang,check)
       implicit none
       character(len=2), intent(in) :: ang
@@ -233,7 +137,7 @@
          check = .FALSE.
       endif
     endsubroutine angchk
-!-----------------------------------------------------------------------------   
+!-----------------------------------------------------------------------------  
     subroutine Lprint(ang,lblk,ndim,i,j)
       implicit none
       integer, intent(in) :: lblk
@@ -363,7 +267,6 @@
       close(22)
 
     endsubroutine read_file_gau_gen
-
 !-----------------------------------------------------------------------------
     subroutine read_file_nwc_gen
       implicit none
@@ -382,7 +285,6 @@
          read(22,*) atom, ang
          call revatmnmtrunc(atom)
          backspace(22)
-         !call lblkcnt_nwc(lblk)
          call lblksize(lblk,atom)
          if (k == 1) then
             write(11,*) size
@@ -622,77 +524,33 @@
       close(22)
       close(11)
     endsubroutine read_file_dem_gen
-
 !-----------------------------------------------------------------------------
     subroutine initform(x)
       implicit none
-      character(len=20) :: Initial
       integer, intent(inout) :: x
-      write(6,*) "Initial Formats shown below..."
-      write(6,*) "GAMESS(US), NWCHEM, GAUSSIAN, DEMON2K"
-      write(6,*) "Input initial basis set format"
-      read(5,*) Initial
-      Initial = trim(adjustl(Initial))
-
-      do while (x /= 0 .and. x /= 1 .and. x /= 2 .and. x /= 3)
-         if (Initial == "GAMESS(US)") then
-            x = 0
-         elseif (Initial == "NWCHEM") then
-            x = 1
-         elseif (Initial == "GAUSSIAN") then
-            x = 2
-         elseif (Initial == "DEMON2K") then
-            x = 3
-         else
-            write(6,*) "Choose a format below"
-            write(6,*) "GAMESS(US), NWCHEM, GAUSSIAN, DEMON2K"
-            read(5,*) Initial
-             if (Initial == "GAMESS(US)") then
-                x = 0
-             elseif (Initial == "NWCHEM") then
-                x = 1
-             elseif (Initial == "GAUSSIAN") then
-                x = 2
-             elseif (Initial == "DEMON2K") then
-                x = 3
-             endif
-          endif
-       enddo
+      do while (x /= 1 .and. x /= 2 .and. x /= 3 .and. x /= 4)
+         write(6,*) "Initial Formats shown below..."
+         write(6,*) "1) GAMESS(US)"
+         write(6,*) "2) NWCHEM"
+         write(6,*) "3) GAUSSIAN"
+         write(6,*) "4) DEMON2K"
+         write(6,*) "Input initial basis set format"
+         read(5,*) x 
+      enddo
     endsubroutine initform
 !-----------------------------------------------------------------------------
     subroutine finform(y)
       implicit none
-      character(len=20) :: fin
       integer, intent(inout) :: y
-      write(6,*) "Final Formats shown below..."
-      write(6,*) "GAMESS(US), NWCHEM, GAUSSIAN, DEMON2K"
-      write(6,*) "Input final basis set format"
-      read(5,*) fin
-      fin = trim(adjustl(fin))
-
-      do while (y /= 0 .and. y /= 1 .and. y /= 2 .and. y /= 3)
-         if (fin == "GAMESS(US)") then
-            y = 0
-         elseif (fin == "NWCHEM") then
-            y = 1
-         elseif (fin == "GAUSSIAN") then
-            y = 2
-         elseif (fin == "DEMON2K") then
-            y = 3
-         else
-            write(6,*) "Choose a format below"
-            write(6,*) "GAMESS(US), NWCHEM, GAUSSIAN, DEMON2K"
-            read(5,*) fin
-            if (fin == "GAMESS(US)") then
-               y = 0
-            elseif (fin == "NWCHEM") then
-               y = 1
-            elseif (fin == "GAUSSIAN") then
-               y = 2
-            elseif (fin == "DEMON2K") then
-               y = 3
-            endif
-         endif
+      do while (y /= 1 .and. y /= 2 .and. y /= 3 .and. y /= 4)
+         write(6,*) "Final Formats shown below..."
+         write(6,*) "GAMESS(US), NWCHEM, GAUSSIAN, DEMON2K"
+         write(6,*) "1) GAMESS(US)"
+         write(6,*) "2) NWCHEM"
+         write(6,*) "3) GAUSSIAN"
+         write(6,*) "4) DEMON2K"
+         write(6,*) "Input final basis set format"
+         read(5,*) y
       enddo
     endsubroutine finform
 !-----------------------------------------------------------------------------
@@ -704,104 +562,52 @@
          write(6,*) "Nothing was done"
          write(6,*) "Program Exit"
          write(6,*) 
-      elseif (x == 0 .and. y == 1) then
-         call read_file_gam_gen
-         call read_file_gen_nwc
-      elseif (x == 0 .and. y == 2) then
-         call read_file_gam_gen
-         call read_file_gen_gau
-      elseif (x == 0 .and. y == 3) then
-         call read_file_gam_gen
-         call read_file_gen_dem
-      elseif (x == 1 .and. y == 0) then
-         call read_file_nwc_gen
-         call read_file_gen_gam
       elseif (x == 1 .and. y == 2) then
+         call read_file_gam_gen
+         call read_file_gen_nwc
+      elseif (x == 1 .and. y == 3) then
+         call read_file_gam_gen
+         call read_file_gen_gau
+      elseif (x == 1 .and. y == 4) then
+         call read_file_gam_gen
+         call read_file_gen_dem
+      elseif (x == 2 .and. y == 1) then
+         call read_file_nwc_gen
+         call read_file_gen_gam
+      elseif (x == 2 .and. y == 3) then
          call read_file_nwc_gen
          call read_file_gen_gau
-      elseif (x == 1 .and. y == 3) then
+      elseif (x == 2 .and. y == 4) then
          call read_file_nwc_gen
          call read_file_gen_dem
-      elseif (x == 2 .and. y == 0) then
+      elseif (x == 3 .and. y == 1) then
          call read_file_gau_gen
          call read_file_gen_gam
-      elseif (x == 2 .and. y == 1) then
+      elseif (x == 3 .and. y == 2) then
          call read_file_gau_gen
          call read_file_gen_nwc
-      elseif (x == 2 .and. y == 3) then
+      elseif (x == 3 .and. y == 4) then
          call read_file_gau_gen
          call read_file_gen_dem
-      elseif (x == 3 .and. y == 0) then
+      elseif (x == 4 .and. y == 1) then
          call read_file_dem_gen
          call read_file_gen_gam
-      elseif (x == 3 .and. y == 1) then
+      elseif (x == 4 .and. y == 2) then
          call read_file_dem_gen
          call read_file_gen_nwc
-      elseif (x == 3 .and. y == 2) then
+      elseif (x == 4 .and. y == 3) then
          call read_file_dem_gen
          call read_file_gen_gau
       endif
     endsubroutine changers
 !-----------------------------------------------------------------------------
-    subroutine deets
-      implicit none
-      integer :: x=-1
-      character(len=1) :: ans
-      write(6,*) "Prerequisite knowledge about input basis sets required"
-      write(6,*) "Print required information: (Y)es or (N)o"
-      read(5,*) ans
-      do while (ans /= "N" .and. ans /= "Y")
-         write(6,*) "Print required information: (Y)es or (N)o"
-         read(5,*) ans
-      enddo
-      if (ans == "N") then
-         write(6,*) "Information skipped"
-         write(6,*) "Proceeding to main program"
-         write(6,*)
-         write(6,*)
-      elseif (ans == "Y") then
-         do while (x /= 0 .and. x /= 1 .and. x /= 2 .and. x /= 3)
-            write(6,*) "Which program? (Insert number)"
-            write(6,*) "(0) GAMESS(US), (1) NWCHEM, (2) GAUSSIAN, (3) DEMON2K"
-            read(5,*) x
-         enddo
-         write(6,*)
-         write(6,*) "Instructions:"
-         if (x == 0) then
-            !GAMESS(US) INFO
-            write(6,*) "1. Insert the number of blocks per atom right after each atom's name (on the same line)"
-         elseif (x == 1) then
-            !NWCHEM INFO
-            write(6,*) "1. Insert the number of blocks per atom before each atom's basis set (line before)"
-            write(6,*) "2. Insert a '#' at the end of each atom's basis set"
-            write(6,*)
-         elseif (x == 2) then
-            !GAUSSIAN INFO
-            write(6,*) "1. Insert the number of blocks per atom before each atom's basis set (line before)"
-         elseif (x == 3) then
-            !DEMON2K INFO
-            write(6,*) "No special format needed"
-         endif
-         write(6,*) 
-         write(6,*) "Information finished"
-         write(6,*) "Proceeding to main program"
-         write(6,*)
-         write(6,*)
-      endif
-
-    endsubroutine deets
-!-----------------------------------------------------------------------------
   endmodule vars
-
 
 program main
   use vars
   implicit none
-  integer :: x,y
-  x=-1
-  y=-2
+  integer :: x=0,y=0
   call read_input
-  call deets
   call initform(x)
   call finform(y)
   call changers(x,y)
