@@ -1,3 +1,12 @@
+! Title: deMon2k Input Generator
+! Date Created: Aug 1st,2016
+! Date Last Modified: Aug 3rd,2016
+! Version: 1.0
+!
+! Author: Jonathan Kung
+! University of Calgary
+! Purpose: Easily create a deMon2k input
+
 module vars
   implicit none
   character(len=80) :: finp
