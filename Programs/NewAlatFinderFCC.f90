@@ -1,3 +1,13 @@
+! Title: New Alat Finder for FCC
+! Date Created: July 28th,2016
+! Date Last Modified: July 28th, 2016
+! Version: 1.0
+!
+! Author: Jonathan Kung
+! University of Calgary
+! Purpose: This program is used to find a new alat for Quantum Espresso calculations.This only works for units cells that have FCC geometry.
+
+
 module vars
     implicit none
     character(len=80) :: finp !file name input
