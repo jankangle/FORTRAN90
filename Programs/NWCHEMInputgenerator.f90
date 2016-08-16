@@ -1,6 +1,6 @@
 ! Title: NWChem Input Generator
-! Date Created: Aug 3,2016
-! Date Last Modified: Aug 5,2016
+! Date Created: Aug 3rd,2016
+! Date Last Modified: Aug 5th,2016
 ! Version: 1.0
 !
 ! Author: Jonathan Kung
