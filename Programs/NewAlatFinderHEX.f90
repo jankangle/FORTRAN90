@@ -1,3 +1,12 @@
+! Title: New Alat Finder for HEX
+! Date Created: July 29th,2016
+! Date Last Modified: July 29th,2016
+! Version: 1.0
+!
+! Author: Jonathan Kung
+! University of Calgary
+! Purpose: This program is used to find a new alat for Quantum Espresso calculations.This only works for units cells that have HEX geometry.
+
  module vars
     implicit none
     character(len=80) :: finp !file name input
