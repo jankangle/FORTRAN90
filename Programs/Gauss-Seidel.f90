@@ -1,3 +1,14 @@
+! Title: Gauss-Seidel Linear systems solver
+! Date Created: May 4th,2016
+! Date Last Modified: July 29th,2016 
+! Version: 1.0
+!
+! Author: Jonathan Kung
+! University of Calgary
+! Purpose: Iteratively solve Linear systems of equations using Gauss-Seidel method
+
+
+
 module vars
   implicit none
   character(len=80) :: finp
