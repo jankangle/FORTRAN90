@@ -1,6 +1,6 @@
 ! Title: deMon2k Input Generator
 ! Date Created: Aug 1st,2016
-! Date Last Modified: Aug 3rd,2016
+! Date Last Modified: Aug 8th,2016
 ! Version: 1.0
 !
 ! Author: Jonathan Kung
