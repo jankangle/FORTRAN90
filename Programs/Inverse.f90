@@ -1,3 +1,12 @@
+! Title: Inverse
+! Date Created: July 29,2016
+! Date Last Modified: July 29,2016
+! Version: 1.0
+!
+! Author: Jonathan Kung
+! University of Calgary
+! Purpose: Calculate the inverse of a matrix
+
 module vars
   implicit none
   character(len=80) :: finp !file name input
