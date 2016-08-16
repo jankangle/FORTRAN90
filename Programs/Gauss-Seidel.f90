@@ -7,8 +7,6 @@
 ! University of Calgary
 ! Purpose: Iteratively solve Linear systems of equations using Gauss-Seidel method
 
-
-
 module vars
   implicit none
   character(len=80) :: finp
