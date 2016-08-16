@@ -10,7 +10,6 @@
  module vars
     implicit none
     character(len=80) :: finp !file name input
-
   contains
 !-----------------------------------------------------------------------------
     subroutine read_input
