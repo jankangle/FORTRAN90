@@ -1,0 +1,8 @@
+COMPILING the fortran library:
+gfortran -shared -O3 -fPIC -c TEST.f90
+
+Wrapping the Library:
+f90wrap -m MODULENAME TEST.f90
+
+Creating Fortran to Python Library:
+f2py -c -m _MODULENAME f90wrap_TEST.f90 f90wrap_toplevel.f90 TEST.o
