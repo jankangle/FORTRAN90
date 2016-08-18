@@ -10,6 +10,7 @@ GAMESS(US) and Gaussian
 
 NWChem
 - You must put the number of blocks per atom and the number of "L" blocks per atom in the line before the atom name
+- Must put a "#" at the end of each basis set for each atom
 
 deMon2k
 - No changes needed
