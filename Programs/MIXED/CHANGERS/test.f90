@@ -326,11 +326,101 @@ END MODULE vars
  CLOSE(22)
  END SUBROUTINE read_file_dem_gen
 
- SUBROUTINE read_file_gen_gam
+ SUBROUTINE read_file_gen_gam(finp,output)
+ USE vars
  IMPLICIT NONE
- INTEGER :: i,j,k
+ INTEGER :: i,j,k,ndim,bsize
+ CHARACTER(LEN=80), INTENT(IN) :: finp,output
+ 100 FORMAT(1X,A1,1X,I1)
+ 110 FORMAT(4X,I1,3X,2E20.10)
+ OPEN(13,FILE=TRIM(ADJUSTL(output)))
+ OPEN(11,FILE="INTERMEDIATE")
+ READ(11,*) bsize
+ DO k=1,bsize
+   READ(11,*) atom,nblk
+   WRITE(13,*) atom
+   ALLOCATE(g(nblk))
+   DO i=1,nblk
+     READ(11,*) g(i)%lmax,ndim
+     WRITE(13,100) TRIM(ADJUSTL(g(i)%lmax)),ndim
+     g(i)%ngbs=ndim
+     ALLOCATE(g(i)%fgbs(ndim,3))
+     DO j=1,ndim
+       READ(11,*) g(i)%fgbs(j,:)
+       WRITE(13,110) j,g(i)%fgbs(j,2),g(i)%fgbs(j,3)
+     ENDDO
+   ENDDO
+   WRITE(13,*)
+   DEALLOCATE(g)
+   IF (k <= size-1) THEN
+     READ(11,*)
+   ENDIF
+ ENDDO
+ CLOSE(11)
+ CLOSE(13)
  END SUBROUTINE read_file_gen_gam
 
+ SUBROUTINE read_file_gen_gau(finp,output)
+ USE vars
+ IMPLICIT NONE
+ INTEGER :: i,j,k,bsize,ndim
+ CHARACTER(LEN=80), INTENT(IN) :: finp,output
+ 100 FORMAT(1X,A1,1X,I1,1X,A)
+ OPEN(13,FILE=TRIM(ADJUSTL(output)))
+ OPEN(11,FILE="INTERMEDIATE")
+ READ(11,*) bsize
+ DO k=1,bsize
+   READ(11,*) atom,nblk
+   CALL atmnmtrunc(atom)
+   WRITE(13,*) atom
+   ALLOCATE(g(nblk))
+   DO i=1,nblk
+     READ(11,*) g(i)%lmax,ndim
+     WRITE(13,100) TRIM(ADJUSTL(g(i)%lmax)),ndim,"1.00"
+     g(i)%ngbs=ndim
+     ALLOCATE(g(i)%fgbs(ndim,3))
+     DO j=1,ndim
+       READ(11,*) g(i)%fgbs(j,:)
+       WRITE(13,'(2E20.10)') g(i)%fgbs(j,2),g(i)%fgbs(j,3)
+     ENDDO
+   ENDDO
+   DEALLOCATE(g)
+   WRITE(13,*)
+ ENDDO
+ CLOSE(11)
+ CLOSE(13)
+ END SUBROUTINE read_file_gen_gau
+
+ SUBROUTINE read_file_gen_nwc(finp,output)
+ USE vars
+ IMPLICIT NONE
+ INTEGER :: i,j,k,bsize,ndim
+ CHARACTER(LEN=80), INTENT(IN) :: finp,output
+ 100 format(1X,A2,1X,A1)
+ OPEN(13,FILE=TRIM(ADJUSTL(output)))
+ OPEN(11,FILE="INTERMEDIATE")
+ READ(11,*) bsize
+ DO k=1,bsize
+   READ(11,*) atom,nblk
+   CALL atmnmtrunc(atom)
+   ALLOCATE(g(nblk))
+   DO i=1,nblk
+     READ(11,*) g(i)%lmax,ndim
+     WRITE(13,100) TRIM(ADJUSTL(atom)),g(i)%lmax
+     g(i)%ngbs=ndim
+     ALLOCATE(g(i)%fgbs(ndim,3))
+     DO j=1,ndim
+       READ(11,*) g(i)%fgbs(j,:)
+       WRITE(13,'(2E20.10)') g(i)%fgbs(j,2),g(i)%fgbs(j,3)
+     ENDDO
+   ENDDO
+   DEALLOCATE(g)
+   WRITE(13,*)
+ ENDDO
+ CLOSE(11)
+ CLOSE(13)
+ END SUBROUTINE read_file_gen_nwc
+ 
  SUBROUTINE read_file_gen_dem(finp,output)
  USE vars
  IMPLICIT NONE
