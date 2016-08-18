@@ -544,8 +544,11 @@ def main_window(frame):
                 elif _finform == "GAMESS(US)":
 		    _OK.f90wrap_read_file_gen_gam(_finp,_output)
             ### Remove junk files ###
-	    os.remove("INTERMEDIATE")
-	    os.remove("temp")
+            if _initform == "deMon2k":
+                os.remove("INTERMEDIATE")
+            else:
+                os.remove("INTERMEDIATE")
+                os.remove("temp")
         changeup()
     ### Initial Basis set Name/Format ###
     Label1 = Labels(frame,"Initial Basis set:",15)
