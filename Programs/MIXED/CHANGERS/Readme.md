@@ -12,4 +12,4 @@ NWChem
 - You must put the number of blocks per atom and the number of "L" blocks per atom in the line before the atom name
 
 deMon2k
-- You must put the number of blocks per atom in the line after the atom name
+- No changes needed
