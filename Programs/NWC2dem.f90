@@ -205,8 +205,9 @@
       integer, intent(inout) :: ndim,i,j
       character(len=1), intent(inout) :: ang
       integer :: k,l
-      real, allocatable, dimension(:,:) :: matrix
-      allocate(matrix(1,3))
+      !real, allocatable, dimension(:,:) :: matrix
+      real, dimension(100,3) :: matrix
+      !allocate(matrix(1,3))
       
       if (i == 1) then
       else
@@ -219,14 +220,19 @@
             do k=1,lblk
                read(12,*) ang,ndim
                write(11,*) ang,ndim
+               !allocate(matrix(5,3))
+               matrix = 0.0
                do l=1,ndim
+                  !allocate(matrix(ndim,3))
                   read(12,*) matrix(j,:)
                   write(11,*) l,matrix(j,2), matrix(j,3)
+                  !deallocate(matrix)
                enddo
+               !deallocate(matrix)
             enddo
          endif
       endif
-      deallocate(matrix)
+      !deallocate(matrix)
     endsubroutine Lprint
 !-----------------------------------------------------------------------------
     subroutine read_extra
@@ -236,7 +242,7 @@
       character(len=1000) :: text
       character (len=10) :: word
       open(14,file="EXTRA")
-      A:do j=1,50
+      A:do j=1,100
          read(22,'(A)', iostat=ierr) text
          read(text,*,iostat=ierr) word
          if (word == search_str) then
@@ -300,7 +306,7 @@
             if (i == s+p+l .and. actv .eqv. .FALSE.) then
                write(11,*) g(i)%lmax, ndim
             endif
-
+            
             if (check .eqv. .TRUE.) then
                allocate(g(i)%fgbs(ndim,3))
                g(i)%lmax = "P"
@@ -308,7 +314,7 @@
             else
                allocate(g(i)%fgbs(ndim,2))
             endif
-
+            
             do j=1,ndim
                read(22,*) g(i)%fgbs(j,:)
                if (i == s+p+l .and. actv .eqv. .FALSE.) then
@@ -318,18 +324,18 @@
                   write(12,*) j,g(i)%fgbs(j,1),g(i)%fgbs(j,3)
                endif
             enddo
-            deallocate(g(i)%fgbs)
             if (check .eqv. .TRUE.) then
-               call Lprint(g(i)%lmax, lblk, ndim,cnt,cnt1)
+               call Lprint(g(i)%lmax,lblk,ndim,cnt,cnt1)
             endif 
+            deallocate(g(i)%fgbs)
          enddo
+         close(12)
          write(11,*)
          deallocate(g)
          read(22,*) 
       enddo
       close(22)
       close(11)
-      close(12)
     endsubroutine read_file_nwc_gen
 !-----------------------------------------------------------------------------
     subroutine read_file_gen_dem
@@ -613,10 +619,10 @@
          read(22,*) matrixa(k,:)
          write(11,*) k,matrixa(k,1),matrixa(k,2)
       enddo
+      deallocate(matrixa)
       do i=1,j+1
          backspace(22)
       enddo
-      deallocate(matrixa)
     endsubroutine rearranger
 !------------------------------------------------------------------------------
   endmodule vars
