@@ -1,6 +1,6 @@
 ! Title: Basis set changer (NWC2DEM)
 ! Date Created: Aug 19th,2016
-! Date Last Modified: Aug 22th,2016
+! Date Last Modified: Aug 25th,2016
 ! Version: 1.0
 !
 ! Author: Jonathan Kung
@@ -78,8 +78,172 @@
          name = "Ca"
       elseif (name == "SCANDIUM") then
          name = "Sc"
+      elseif (name == "TITANIUM") then
+         name = "Ti"
+      elseif (name == "VANADIUM") then
+         name = "V"
+      elseif (name == "CHROMIUM") then
+         name = "Cr"
+      elseif (name == "MANGANESE") then
+         name = "Mn"
+      elseif (name == "IRON") then
+         name = "Fe"
+      elseif (name == "COBALT") then
+         name = "Co"
+      elseif (name == "NICKEL") then
+         name = "Ni"
+      elseif (name == "COPPER") then
+         name = "Cu"
+      elseif (name == "ZINC") then
+         name = "Zn"
+      elseif (name == "GALLIUM") then
+         name = "Ga"
+      elseif (name == "GERMANIUM") then
+         name = "Ge"
+      elseif (name == "ARSENIC") then
+         name = "As"
+      elseif (name == "SELENIUM") then
+         name = "Se"
+      elseif (name == "BROMINE") then
+         name = "Br"
+      elseif (name == "KRYPTON") then
+         name = "Kr"
+      elseif (name == "RUBIDIUM") then
+         name = "Rb"
+      elseif (name == "STRONTIUM") then
+         name = "Sr"
+      elseif (name == "YTTRIUM") then
+         name = "Y"
+      elseif (name == "ZIRCONIUM") then
+         name = "Zr"
+      elseif (name == "NIOBIUM") then
+         name = "Nb"
+      elseif (name == "MOLYBDENUM") then
+         name = "Mo"
+      elseif (name == "TECHNETIUM") then
+         name = "Tc"
+      elseif (name == "RUTHENIUM") then
+         name = "Ru"
+      elseif (name == "RHODIUM") then
+         name = "Rh"
+      elseif (name == "PALLADIUM") then
+         name = "Pd"
+      elseif (name == "SILVER") then
+         name = "Ag"
+      elseif (name == "CADMIUM") then
+         name = "Cd"
+      elseif (name == "INDIUM") then
+         name = "In"
+      elseif (name == "TIN") then
+         name = "Sn"
+      elseif (name == "ANTIMONY") then
+         name = "Sb"
+      elseif (name == "TELLURIUM") then
+         name = "Te"
+      elseif (name == "IODINE") then
+         name = "I"
+      elseif (name == "XENON") then
+         name = "Xe"
+      elseif (name == "CESIUM") then
+         name = "Cs"
+      elseif (name == "BARIUM") then
+         name = "Ba"
+      elseif (name == "LANTHANUM") then
+         name = "La"
       elseif (name == "CERIUM") then
          name = "Ce"
+      elseif (name == "PRASEODYMIUM") then
+         name = "Pr"
+      elseif (name == "NEODYMIUM") then
+         name = "Nd"
+      elseif (name == "PROMETHIUM") then
+         name = "Pm"
+      elseif (name == "SAMARIUM") then
+         name = "Sm"
+      elseif (name == "EUROPIUM") then
+         name = "Eu"
+      elseif (name == "GADOLINIUM") then
+         name = "Gd"
+      elseif (name == "TERBIUM") then
+         name = "Tb"
+      elseif (name == "DYSPROSIUM") then
+         name = "Dy"
+      elseif (name == "HOLMIUM") then
+         name = "Ho"
+      elseif (name == "ERBIUM") then
+         name = "Er"
+      elseif (name == "THULIUM") then
+         name = "Tm"
+      elseif (name == "YTTERBIUM") then
+         name = "Yb"
+      elseif (name == "LUTETIUM") then
+         name = "Lu"
+      elseif (name == "HAFNIUM") then
+         name = "Hf"
+      elseif (name == "TANTALUM") then
+         name = "Ta"
+      elseif (name == "TUNGSTEN") then
+         name = "W"
+      elseif (name == "RHENIUM") then
+         name = "Re"
+      elseif (name == "OSMIUM") then
+         name = "Os"
+      elseif (name == "IRIDIUM") then
+         name = "Ir"
+      elseif (name == "PLATINUM") then
+         name = "Pt"
+      elseif (name == "GOLD") then
+         name = "Au"
+      elseif (name == "MERCURY") then
+         name = "Hg"
+      elseif (name == "THALLIUM") then
+         name = "Tl"
+      elseif (name == "LEAD") then
+         name = "Pb"
+      elseif (name == "BISMUTH") then
+         name = "Bi"
+      elseif (name == "POLONIUM") then
+         name = "Po"
+      elseif (name == "ASTATINE") then
+         name = "At"
+      elseif (name == "RADON") then
+         name = "Rn"
+      elseif (name == "FRANCIUM") then
+         name = "Fr"
+      elseif (name == "RADIUM") then
+         name = "Ra"
+      elseif (name == "ACTINIUM") then
+         name = "Ac"
+      elseif (name == "THORIUM") then
+         name = "Th"
+      elseif (name == "PROACTINIUM") then
+         name = "Pa"
+      elseif (name == "URANIUM") then
+         name = "U"
+      elseif (name == "NEPTUNIUM") then
+         name = "Np"
+      elseif (name == "PLUTONIUM") then
+         name = "Pu"
+      elseif (name == "AMERICIUM") then
+         name = "Am"
+      elseif (name == "CURIUM") then
+         name = "Cm"
+      elseif (name == "BERKELIUM") then
+         name = "Bk"
+      elseif (name == "CALIFORNIUM") then
+         name = "Cf"
+      elseif (name == "EINSTEINIUM") then
+         name = "Es"
+      elseif (name == "FERMIUM") then
+         name = "Fm"
+      elseif (name == "MENDELEVIUM") then
+         name = "Md"
+      elseif (name == "NOBELIUM") then
+         name = "No"
+      elseif (name == "LAWRENCIUM") then
+         name = "Lr"
+      else
+         name = "ERROR"
       endif
     endsubroutine atmnmtrunc
 !-----------------------------------------------------------------------------
@@ -128,8 +292,172 @@
          name = "CALCIUM"
       elseif (name == "Sc") then
          name = "SCANDIUM"
+      elseif (name == "Ti") then
+         name = "TITANIUM"
+      elseif (name == "V") then
+         name = "VANADIUM"
+      elseif (name == "Cr") then
+         name = "CHROMIUM"
+      elseif (name == "Mn") then
+         name = "MANGANESE"
+      elseif (name == "Fe") then
+         name = "IRON"
+      elseif (name == "Co") then
+         name = "COBALT"
+      elseif (name == "Ni") then
+         name = "NICKEL"
+      elseif (name == "Cu") then
+         name = "COPPER"
+      elseif (name == "Zn") then
+         name = "ZINC"
+      elseif (name == "Ga") then
+         name = "GALLIUM"
+      elseif (name == "Ge") then
+         name = "GERMANIUM"
+      elseif (name == "As") then
+         name = "ARSENIC"
+      elseif (name == "Se") then
+         name = "SELENIUM"
+      elseif (name == "Br") then
+         name = "BROMINE"
+      elseif (name == "Kr") then
+         name = "KRYPTON"
+      elseif (name == "Rb") then
+         name = "RUBIDIUM"
+      elseif (name == "Sr") then
+         name = "STRONTIUM"
+      elseif (name == "Y") then
+         name = "Yttrium"
+      elseif (name == "Zr") then
+         name = "ZIRCONIUM"
+      elseif (name == "Nb") then
+         name = "NIOBIUM"
+      elseif (name == "Mo") then
+         name = "MOLYBDENUM"
+      elseif (name == "Tc") then
+         name = "TECHNETIUM"
+      elseif (name == "Ru") then
+         name = "RUTHENIUM"
+      elseif (name == "Rh") then
+         name = "RHODIUM"
+      elseif (name == "Pd") then
+         name = "PALLADIUM"
+      elseif (name == "Ag") then
+         name = "SILVER"
+      elseif (name == "Cd") then
+         name = "CADMIUM"
+      elseif (name == "In") then
+         name = "INDIUM"
+      elseif (name == "Sn") then
+         name = "TIN"
+      elseif (name == "Sb") then
+         name = "ANTIMONY"
+      elseif (name == "Te") then
+         name = "TELLURIUM"
+      elseif (name == "I") then
+         name = "IODINE"
+      elseif (name == "Xe") then
+         name = "XENON"
+      elseif (name == "Cs") then
+         name = "CESIUM"
+      elseif (name == "Ba") then
+         name = "BARIUM"
+      elseif (name == "La") then
+         name = "LANTHANUM"
       elseif (name == "Ce") then
          name = "CERIUM"
+      elseif (name == "Pr") then
+         name = "PRASEODYMIUM"
+      elseif (name == "Nd") then
+         name = "NEODYMIUM"
+      elseif (name == "Pm") then
+         name = "PROMETHIUM"
+      elseif (name == "Sm") then
+         name = "SAMARIUM"
+      elseif (name == "Eu") then
+         name = "EUROPIUM"
+      elseif (name == "Gd") then
+         name = "GADOLINIUM"
+      elseif (name == "Tb") then
+         name = "TERBIUM"
+      elseif (name == "Dy") then
+         name = "DYSPROSIUM"
+      elseif (name == "Ho") then
+         name = "HOLMIUM"
+      elseif (name == "Er") then
+         name = "ERBIUM"
+      elseif (name == "Tm") then
+         name = "THULIUM"
+      elseif (name == "Yb") then
+         name = "YTTERBIUM"
+      elseif (name == "Lu") then
+         name = "LUTETIUM"
+      elseif (name == "Hf") then
+         name = "HAFNIUM"
+      elseif (name == "Ta") then
+         name = "TANTALUM"
+      elseif (name == "W") then
+         name = "TUNGSTEN"
+      elseif (name == "Re") then
+         name = "RHENIUM"
+      elseif (name == "Os") then
+         name = "OSMIUM"
+      elseif (name == "Ir") then
+         name = "IRIDIUM"
+      elseif (name == "Pt") then
+         name = "PLATINUM"
+      elseif (name == "Au") then
+         name = "GOLD"
+      elseif (name == "Hg") then
+         name = "MERCURY"
+      elseif (name == "Tl") then
+         name = "THALLIUM"
+      elseif (name == "Pb") then
+         name = "LEAD"
+      elseif (name == "Bi") then
+         name = "BISMUTH"
+      elseif (name == "Po") then
+         name = "POLONIUM"
+      elseif (name == "At") then
+         name = "ASTATINE"
+      elseif (name == "Rn") then
+         name = "RADON"
+      elseif (name == "Fr") then
+         name = "FRANCIUM"
+      elseif (name == "Ra") then
+         name = "RADIUM"
+      elseif (name == "Ac") then
+         name = "ACTINIUM"
+      elseif (name == "Th") then
+         name = "THORIUM"
+      elseif (name == "Pa") then
+         name = "PROTACTINIUM"
+      elseif (name == "U") then
+         name = "URANIUM"
+      elseif (name == "Np") then
+         name = "NEPTUNIUM"
+      elseif (name == "Pu") then
+         name = "PLUTONIUM"
+      elseif (name == "Am") then
+         name = "AMERICIUM"
+      elseif (name == "Cm") then
+         name = "CURIUM"
+      elseif (name == "Bk") then
+         name = "BERKELIUM"
+      elseif (name == "Cf") then
+         name = "CALIFORNIUM"
+      elseif (name == "Es") then
+         name = "EINSTEINIUM"
+      elseif (name == "Fm") then
+         name = "FERMIUM"
+      elseif (name == "Md") then
+         name = "MENDELEVIUM"
+      elseif (name == "No") then
+         name = "NOBELIUM"
+      elseif (name == "Lr") then
+         name = "LAWRENCIUM"
+      else
+         name = "ERROR"
       endif
     endsubroutine revatmnmtrunc
 !-----------------------------------------------------------------------------
@@ -149,25 +477,10 @@
          m=3
       elseif (ang == "G") then
          m=4
+      elseif (ang == "H") then
+         m=5
       endif
     endsubroutine angmom
-!-----------------------------------------------------------------------------
-    subroutine revangmom(ang,m)
-      implicit none
-      integer, intent(inout) :: m
-      character(len=1), intent(out) :: ang
-      if (m == 0) then
-         ang = "S"
-      elseif (m == 1) then
-         ang = "P"
-      elseif (m == 2) then
-         ang = "D"
-      elseif (m == 3) then
-         ang = "F"
-      elseif (m == 4) then
-         ang = "G"
-      endif
-    endsubroutine revangmom
 !-----------------------------------------------------------------------------
     subroutine nblkcnt_nwc(count)
       implicit none
@@ -188,79 +501,95 @@
       enddo
     endsubroutine nblkcnt_nwc
 !-----------------------------------------------------------------------------
-    subroutine angchk(ang,check)
-      implicit none
-      character(len=2), intent(in) :: ang
-      logical, intent(out) :: check
-      if (ang == "SP" .or. ang == "L") then
-         check = .TRUE.
-      else
-         check = .FALSE.
-      endif
-    endsubroutine angchk
-!-----------------------------------------------------------------------------  
-    subroutine Lprint(ang,lblk,ndim,i,j)
-      implicit none
-      integer, intent(in) :: lblk
-      integer, intent(inout) :: ndim,i,j
-      character(len=1), intent(inout) :: ang
-      integer :: k,l
-      !real, allocatable, dimension(:,:) :: matrix
-      real, dimension(100,3) :: matrix
-      !allocate(matrix(1,3))
-      
-      if (i == 1) then
-      else
-         if (ang == "P") then
-            j=j+1
-         endif
-         if (j == lblk) then
-            i=i+1
-            rewind(12)
-            do k=1,lblk
-               read(12,*) ang,ndim
-               write(11,*) ang,ndim
-               !allocate(matrix(5,3))
-               matrix = 0.0
-               do l=1,ndim
-                  !allocate(matrix(ndim,3))
-                  read(12,*) matrix(j,:)
-                  write(11,*) l,matrix(j,2), matrix(j,3)
-                  !deallocate(matrix)
-               enddo
-               !deallocate(matrix)
-            enddo
-         endif
-      endif
-      !deallocate(matrix)
-    endsubroutine Lprint
-!-----------------------------------------------------------------------------
     subroutine read_extra
       implicit none
       integer :: ierr,j,m
       character(len=*), parameter :: search_str = "basis"
       character(len=1000) :: text
       character (len=10) :: word
-      open(14,file="EXTRA")
+      open(18,file="EXTRA")
       A:do j=1,100
          read(22,'(A)', iostat=ierr) text
          read(text,*,iostat=ierr) word
          if (word == search_str) then
             exit A
          endif
-         write(14,'(A)') trim(adjustl(text))
+         write(18,'(A)') trim(adjustl(text))
       enddo A
       backspace(22)   
-      close(14)
+      close(18)
     endsubroutine read_extra
+!-----------------------------------------------------------------------------
+    subroutine fgbsprint(ndim,ang)
+      implicit none
+      real,allocatable,dimension(:,:) :: matrix
+      integer, intent(in) :: ndim
+      character(len=2), intent(in) :: ang
+      integer :: i,j,k,l,col
+
+      call colcnt(i)
+      allocate(matrix(ndim,i))
+
+      if (ang == "S") then
+         write(12,*) ang, ndim*i-ndim
+      elseif (ang == "P") then
+         write(13,*) ang, ndim*i-ndim
+      elseif (ang == "SP") then
+         write(12,*) "S", ndim
+         write(13,*) "P", ndim
+      elseif (ang == "D") then
+         write(14,*) ang, ndim*i-ndim
+      elseif (ang == "F") then
+         write(15,*) ang, ndim*i-ndim
+      elseif (ang == "G") then
+         write(16,*) ang, ndim*i-ndim
+      elseif (ang == "H") then
+         write(17,*) ang, ndim*i-ndim
+      endif
+
+      do col=2,i
+         do j=1,ndim
+            read(22,*) matrix(j,:)
+            if (ang == "S") then
+               write(12,*) j+(col-2)*ndim,matrix(j,1),matrix(j,col)
+            elseif (ang == "P") then
+               write(13,*) j+(col-2)*ndim,matrix(j,1),matrix(j,col)
+            elseif (ang == "D") then
+               write(14,*) j+(col-2)*ndim,matrix(j,1),matrix(j,col)
+            elseif (ang == "F") then
+               write(15,*) j+(col-2)*ndim,matrix(j,1),matrix(j,col)
+            elseif (ang == "G") then
+               write(16,*) j+(col-2)*ndim,matrix(j,1),matrix(j,col)
+            elseif (ang == "H") then
+               write(17,*) j+(col-2)*ndim,matrix(j,1),matrix(j,col)
+            endif
+            if (col == 2) then
+               if (ang == "SP") then
+                  write(12,*) j,matrix(j,1),matrix(j,2)
+                  write(13,*) j,matrix(j,1),matrix(j,3)
+               endif
+            endif
+         enddo
+         do k=1,ndim
+            backspace(22)
+         enddo
+      enddo
+
+      do l=1,ndim
+         read(22,*)
+      enddo
+
+      deallocate(matrix)
+    endsubroutine fgbsprint
 !-----------------------------------------------------------------------------
     subroutine read_file_nwc_gen
       implicit none
-      integer :: i,j,k,m,lblk,ndim,fsize,n
+      integer :: i,j,k,m,lblk,ndim,fsize,n,ierr
       integer :: cnt,cnt1,scnt
-      integer :: s,p,d,f,l,Gb,blah
+      integer :: s,p,d,f,l,Gb,Hb
       character(len=2) :: ang
       character(len=10) :: ok
+      character(len=50) :: text
       logical :: check,dirP,actv
       call filesize(fsize)
       call bsizecnt_nwc(fsize,size)
@@ -272,64 +601,131 @@
          cnt=0
          cnt1=0
          scnt=0
-         actv = .FALSE.
+         actv = .TRUE.
+         !!! count how many blocks for each atom !!!
          call blkcnt_nwc(nblk,n)
-         call blkcnter_nwc(n,s,p,d,f,Gb,l,dirP)
+         !!! count the number of blocks for each ang !!!
+         call blkcnter_nwc(n,s,p,d,f,Gb,Hb,l,dirP)
          read(22,*) atom, ang
-         call revatmnmtrunc(atom)
          backspace(22)
+         !!! unshrink the atom name !!!
+         call revatmnmtrunc(atom)
+         if (atom == "ERROR") then
+            backspace(22)
+            read(22,*) atom, ang
+            call revatmnmtrunc(atom)
+            backspace(22)
+         endif
+         !!! find the number of lblks !!!
          call lblksize(lblk)
+         !!! write the size of the basis set !!!
          if (k == 1) then
             write(11,*) size
          endif
+         !!! write the number of blocks for each atom !!!
          write(11,*) trim(adjustl(atom)), nblk+lblk
          allocate(g(nblk))
-         open(12,file="temp")
+         open(12,file="sINT")
+         open(13,file="pINT")
+         open(14,file="dINT")
+         open(15,file="fINT")
+         open(16,file="gINT")
+         open(17,file="hINT")
+         !!! print to the block intermediate files !!!
          do i=1,nblk
-            if (p /= 0) then
-               if (l /= 0) then
-                  if (dirP .eqv. .TRUE.) then
-                     if (i == s+1) then
-                        call rearranger(actv)
-                     endif
-                  endif
-               endif
-            endif
             read(22,*) atom, g(i)%lmax
+            !print*, atom,g(i)%lmax
             call nblkcnt_nwc(ndim)
             g(i)%ngbs=ndim
-            call angchk(g(i)%lmax,check)
-         
-            if (g(i)%lmax == "SP") then
-               g(i)%lmax = "S"
-            endif
-            if (i == s+p+l .and. actv .eqv. .FALSE.) then
-               write(11,*) g(i)%lmax, ndim
-            endif
-            
-            if (check .eqv. .TRUE.) then
-               allocate(g(i)%fgbs(ndim,3))
-               g(i)%lmax = "P"
-               write(12,*) g(i)%lmax, ndim
-            else
-               allocate(g(i)%fgbs(ndim,2))
-            endif
-            
-            do j=1,ndim
-               read(22,*) g(i)%fgbs(j,:)
-               if (i == s+p+l .and. actv .eqv. .FALSE.) then
-               write(11,*) j,g(i)%fgbs(j,1),g(i)%fgbs(j,2)
-               endif
-               if (check .eqv. .TRUE.) then
-                  write(12,*) j,g(i)%fgbs(j,1),g(i)%fgbs(j,3)
-               endif
-            enddo
-            if (check .eqv. .TRUE.) then
-               call Lprint(g(i)%lmax,lblk,ndim,cnt,cnt1)
-            endif 
-            deallocate(g(i)%fgbs)
+            call fgbsprint(ndim,g(i)%lmax)
          enddo
+         !!! rewind to the top of the files !!!
+         rewind(12)
+         rewind(13)
+         rewind(14)
+         rewind(15)
+         rewind(16)
+         rewind(17)
+         ierr=0
+         !!! write s block !!!
+         if (s /= 0 .or. l /= 0) then
+            A:do j=1,1000
+               read(12,'(A)', iostat=ierr) text
+               if (ierr /= 0) exit A
+               write(11,'(A)') trim(text)
+            enddo A
+         endif
+         ierr=0
+         !!! write p block !!!
+         if (p /= 0 .or. l /= 0) then
+            B:do j=1,1000
+               read(13,'(A)', iostat=ierr) text
+               if (ierr /= 0) exit B
+               write(11,'(A)') trim(text)
+            enddo B
+         endif
+         ierr=0
+         !!! write d block !!!
+         if (d /= 0) then
+            C:do j=1,1000
+               read(14,'(A)', iostat=ierr) text
+               if (ierr /= 0) exit C
+               write(11,'(A)') trim(text)
+            enddo C
+         endif
+         ierr=0
+         !!! write f block !!!
+         if (f /= 0) then
+            E:do j=1,1000
+               read(15,'(A)', iostat=ierr) text
+               if (ierr /= 0) exit E
+               write(11,'(A)') trim(text)
+            enddo E
+         endif
+         ierr=0
+         !!! write g block !!!
+         if (Gb /= 0) then
+            H:do j=1,1000
+               read(16,'(A)', iostat=ierr) text
+               if (ierr /= 0) exit H
+               write(11,'(A)') trim(text)
+            enddo H
+         endif
+         ierr=0
+         !!! write h block !!!
+         if (Hb /= 0) then
+            Ib: do j=1,1000
+               read(17,'(A)',iostat=ierr) text
+               if(ierr /= 0) exit Ib
+               write(11,'(A)') trim(text)
+            enddo Ib
+         endif
          close(12)
+         close(13)
+         close(14)
+         close(15)
+         close(16)
+         close(17)
+         !!! clear files !!!
+         open(12,file="sINT")
+         open(13,file="pINT")
+         open(14,file="dINT")
+         open(15,file="fINT")
+         open(16,file="gINT")
+         open(17,file="hINT")
+         write(12,*)
+         write(13,*)
+         write(14,*)
+         write(15,*)
+         write(16,*)
+         write(17,*)
+         close(12)
+         close(13)
+         close(14)
+         close(15)
+         close(16)
+         close(17)
+
          write(11,*)
          deallocate(g)
          read(22,*) 
@@ -342,7 +738,7 @@
       implicit none
       integer :: i,j,k,size,temp,n,m,cnts,cntp,cntd,cntf,ndim,o,ierr
       character(len=1000) :: text
-100   format(1X,I2,3X,I1,3X,I2)
+100   format(1X,I2,3X,I1,3X,I3)
 101   format(2A,10A,1A,2A,2A,9A,1A)
       open(13,file="OUTPUT")
       open(11,file="INTERMEDIATE")
@@ -442,6 +838,81 @@
       enddo
     endsubroutine blkcnt_nwc
 !-----------------------------------------------------------------------------
+    subroutine colcnt(i)
+      implicit none
+      integer :: ierr
+      integer,intent(out) :: i
+      real :: R1,R2,R3,R4,R5,R6,R7,R8,R9,R10,R11,R12,R13,R14,R15,R16,R17,R18,R19,R20
+      character(len=1000) :: text
+      read(22,'(A)') text
+      backspace(22)
+      text=trim(text)
+      ierr=0
+      A: do while (ierr == 0)
+         i=0
+         read(text,*,iostat=ierr) R1
+         if (ierr /= 0) exit A
+         i=1
+         read(text,*,iostat=ierr) R1,R2
+         if (ierr /= 0) exit A
+         i=2
+         read(text,*,iostat=ierr) R1,R2,R3
+         if (ierr /= 0) exit A
+         i=3
+         read(text,*,iostat=ierr) R1,R2,R3,R4
+         if (ierr /= 0) exit A
+         i=4
+         read(text,*,iostat=ierr) R1,R2,R3,R4,R5
+         if (ierr /= 0) exit A
+         i=5
+         read(text,*,iostat=ierr) R1,R2,R3,R4,R5,R6
+         if (ierr /= 0) exit A
+         i=6
+         read(text,*,iostat=ierr) R1,R2,R3,R4,R5,R6,R7
+         if (ierr /= 0) exit A
+         i=7
+         read(text,*,iostat=ierr) R1,R2,R3,R4,R5,R6,R7,R8
+         if (ierr /= 0) exit A
+         i=8
+         read(text,*,iostat=ierr) R1,R2,R3,R4,R5,R6,R7,R8,R9
+         if (ierr /= 0) exit A
+         i=9
+         read(text,*,iostat=ierr) R1,R2,R3,R4,R5,R6,R7,R8,R9,R10
+         if (ierr /= 0) exit A
+         i=10
+         read(text,*,iostat=ierr) R1,R2,R3,R4,R5,R6,R7,R8,R9,R10,R11
+         if (ierr /= 0) exit A
+         i=11
+         read(text,*,iostat=ierr) R1,R2,R3,R4,R5,R6,R7,R8,R9,R10,R11,R12
+         if (ierr /= 0) exit A
+         i=12
+         read(text,*,iostat=ierr) R1,R2,R3,R4,R5,R6,R7,R8,R9,R10,R11,R12,R13
+         if (ierr /= 0) exit A
+         i=13
+         read(text,*,iostat=ierr) R1,R2,R3,R4,R5,R6,R7,R8,R9,R10,R11,R12,R13,R14
+         if (ierr /= 0) exit A
+         i=14
+         read(text,*,iostat=ierr) R1,R2,R3,R4,R5,R6,R7,R8,R9,R10,R11,R12,R13,R14,R15
+         if (ierr /= 0) exit A
+         i=15
+         read(text,*,iostat=ierr) R1,R2,R3,R4,R5,R6,R7,R8,R9,R10,R11,R12,R13,R14,R15,R16
+         if (ierr /= 0) exit A
+         i=16
+         read(text,*,iostat=ierr) R1,R2,R3,R4,R5,R6,R7,R8,R9,R10,R11,R12,R13,R14,R15,R16,R17
+         if (ierr /= 0) exit A
+         i=17
+         read(text,*,iostat=ierr) R1,R2,R3,R4,R5,R6,R7,R8,R9,R10,R11,R12,R13,R14,R15,R16,R17,R18
+         if (ierr /= 0) exit A
+         i=18
+         read(text,*,iostat=ierr) R1,R2,R3,R4,R5,R6,R7,R8,R9,R10,R11,R12,R13,R14,R15,R16,R17,R18,R19
+         if (ierr /= 0) exit A
+         i=19
+         read(text,*,iostat=ierr) R1,R2,R3,R4,R5,R6,R7,R8,R9,R10,R11,R12,R13,R14,R15,R16,R17,R18,R19,R20
+         if (ierr /= 0) exit A
+         i=20
+      enddo A
+    endsubroutine colcnt
+!-----------------------------------------------------------------------------
     subroutine lblksize(lblkcnt)
       implicit none
       character(len=5), parameter :: search_str = "SP"
@@ -460,7 +931,7 @@
          endif
       enddo
       lblkcnt=count
-      do i=1,j+1
+      do i=0,j
          backspace(22)
       enddo
     endsubroutine lblksize
@@ -501,53 +972,12 @@
       close(22)
     endsubroutine filesize
 !-----------------------------------------------------------------------------
-    subroutine wordfinder(i)
-      implicit none
-      integer :: ierr,j,m
-      integer, intent(in) :: i
-      character(len=*), parameter :: search_str = "basis"
-      character(len=1000) :: text
-      character (len=10) :: word
-      m=0
-      A:do j=1,i
-         read(22,*, iostat=ierr) text
-         read(text,*) word
-         if (word == search_str) then
-            exit A
-         endif
-      enddo A
-      backspace(22)
-    endsubroutine wordfinder
-!------------------------------------------------------------------------------
-    subroutine lchecker(ang,dirP,i,j)
-      implicit none
-      character(len=1), intent(in) :: ang
-      integer, intent(in) :: i,j
-      integer :: di,dj
-      logical, intent(out) :: dirP
-      di=i
-      dj=j
-
-      if (ang == "P") then
-         di=di+1
-         if (di == 1 .and. dj == 0) then
-            dirP = .TRUE.
-         endif
-      elseif (ang == "SP") then
-         dj=dj+1
-         if (di == 0 .and. dj == 1) then
-            dirP = .FALSE.
-         endif
-      endif
-      
-    endsubroutine lchecker
-!------------------------------------------------------------------------------
-    subroutine blkcnter_nwc(k,s,p,d,f,Gb,l,dirP)
+    subroutine blkcnter_nwc(k,s,p,d,f,Gb,Hb,l,dirP)
       implicit none
       character(len=10) :: atom
       character(len=2) :: ang
       integer :: i,j,ierr,m,n
-      integer, intent(out) :: s,p,d,f,l,Gb
+      integer, intent(out) :: s,p,d,f,l,Gb,Hb
       integer, intent(in) :: k
       logical, intent(out) :: dirP
       s=0
@@ -555,11 +985,11 @@
       d=0
       f=0
       Gb=0
+      Hb=0
       l=0
 
       m=0 !p first
       n=0 !sp first
-
       do i=1,k
          read(22,*,iostat=ierr) atom,ang
          ang=trim(adjustl(ang))
@@ -581,6 +1011,8 @@
             endif
          elseif (ang == "G") then
             Gb=Gb+1
+         elseif (ang == "H") then
+            Hb=Hb+1
          endif
       enddo
       if (m == 1) then
@@ -588,42 +1020,11 @@
       elseif (n == 1) then
          dirP = .FALSE.
       endif
-      do j=1,k+1
+
+      do j=0,k
          backspace(22)
       enddo
     endsubroutine blkcnter_nwc
-!------------------------------------------------------------------------------
-    subroutine rearranger(activate)
-      implicit none
-      character(len=5), parameter :: search_str = "SP"
-      character(len=10) :: junk,word,atom
-      character(len=2) :: ang
-      character(len=1000) :: text
-      integer :: ierr,i,j,k,ndim
-      logical, intent(inout) :: activate
-      real,allocatable,dimension(:,:) :: matrixa
-      activate = .TRUE.
-      j=0
-      A: do while (junk /= "end")
-         read(22,*,iostat=ierr) junk,word
-         j=j+1
-         word=trim(adjustl(word))
-         if (word == search_str) exit A
-      enddo A
-      backspace(22)
-      read(22,*) junk,ang
-      call nblkcnt_nwc(ndim)
-      allocate(matrixa(ndim,3))
-      write(11,*) "S", ndim
-      do k=1,ndim
-         read(22,*) matrixa(k,:)
-         write(11,*) k,matrixa(k,1),matrixa(k,2)
-      enddo
-      deallocate(matrixa)
-      do i=1,j+1
-         backspace(22)
-      enddo
-    endsubroutine rearranger
 !------------------------------------------------------------------------------
   endmodule vars
 
