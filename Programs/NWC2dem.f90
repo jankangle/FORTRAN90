@@ -543,8 +543,8 @@
          write(15,*) ang, ndim*i-ndim
       elseif (ang == "G") then
          write(16,*) ang, ndim*i-ndim
-      elseif (ang == "H") then
-         write(17,*) ang, ndim*i-ndim
+      !elseif (ang == "H") then
+      !   write(17,*) ang, ndim*i-ndim
       endif
 
       do col=2,i
@@ -560,8 +560,8 @@
                write(15,*) j+(col-2)*ndim,matrix(j,1),matrix(j,col)
             elseif (ang == "G") then
                write(16,*) j+(col-2)*ndim,matrix(j,1),matrix(j,col)
-            elseif (ang == "H") then
-               write(17,*) j+(col-2)*ndim,matrix(j,1),matrix(j,col)
+       !     elseif (ang == "H") then
+       !        write(17,*) j+(col-2)*ndim,matrix(j,1),matrix(j,col)
             endif
             if (col == 2) then
                if (ang == "SP") then
@@ -630,7 +630,7 @@
          open(14,file="dINT")
          open(15,file="fINT")
          open(16,file="gINT")
-         open(17,file="hINT")
+        ! open(17,file="hINT")
          !!! print to the block intermediate files !!!
          do i=1,nblk
             read(22,*) atom, g(i)%lmax
@@ -645,7 +645,7 @@
          rewind(14)
          rewind(15)
          rewind(16)
-         rewind(17)
+         !rewind(17)
          ierr=0
          !!! write s block !!!
          if (s /= 0 .or. l /= 0) then
@@ -693,38 +693,38 @@
          endif
          ierr=0
          !!! write h block !!!
-         if (Hb /= 0) then
-            Ib: do j=1,1000
-               read(17,'(A)',iostat=ierr) text
-               if(ierr /= 0) exit Ib
-               write(11,'(A)') trim(text)
-            enddo Ib
-         endif
+         !if (Hb /= 0) then
+         !   Ib: do j=1,1000
+         !      read(17,'(A)',iostat=ierr) text
+         !      if(ierr /= 0) exit Ib
+         !      write(11,'(A)') trim(text)
+         !   enddo Ib
+         !endif
          close(12)
          close(13)
          close(14)
          close(15)
          close(16)
-         close(17)
+         !close(17)
          !!! clear files !!!
          open(12,file="sINT")
          open(13,file="pINT")
          open(14,file="dINT")
          open(15,file="fINT")
          open(16,file="gINT")
-         open(17,file="hINT")
+         !open(17,file="hINT")
          write(12,*)
          write(13,*)
          write(14,*)
          write(15,*)
          write(16,*)
-         write(17,*)
+         !write(17,*)
          close(12)
          close(13)
          close(14)
          close(15)
          close(16)
-         close(17)
+         !close(17)
 
          write(11,*)
          deallocate(g)
@@ -736,7 +736,8 @@
 !-----------------------------------------------------------------------------
     subroutine read_file_gen_dem
       implicit none
-      integer :: i,j,k,size,temp,n,m,cnts,cntp,cntd,cntf,ndim,o,ierr
+      integer :: i,j,k,size,temp,n,m,ndim,o,ierr
+      integer :: cnts,cntp,cntd,cntf,cntg,cnth
       character(len=1000) :: text
 100   format(1X,I2,3X,I1,3X,I3)
 101   format(2A,10A,1A,2A,2A,9A,1A)
@@ -761,6 +762,8 @@
          cntp=0
          cntd=0
          cntf=0
+         cntg=0
+         cnth=0
          
          do i=1,nblk
             read(11,*) g(i)%lmax,ndim
@@ -785,6 +788,16 @@
                n=i-n
                write(13,100) n+cntf,m,ndim
                cntf=cntf+1
+            elseif (g(i)%lmax == "G") then
+               n=i-5
+               n=i-n
+               write(13,100) n+cntg,m,ndim
+               cntg=cntg+1
+           ! elseif (g(i)%lmax == "H") then
+           !    n=i-6
+           !    n=i-n
+           !    write(13,100) n+cnth,m,ndim
+           !    cnth=cnth+1
             endif
             
             g(i)%ngbs=ndim
